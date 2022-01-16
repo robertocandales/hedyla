@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+import { routes } from './config/routes';
+import { Provider } from 'react-redux';
+import generateStore from './redux/store';
+import { LoadScriptCustom } from './shared/GoogleMaps';
+
+//store & customTypes
+const store = generateStore();
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <LoadScriptCustom>
+        <BrowserRouter>
+          <Routes>
+            {(routes || []).map((route) => (
+              <Route key={route.path} path={route.path} element={<route.component />} />
+            ))}
+          </Routes>
+        </BrowserRouter>
+      </LoadScriptCustom>
+    </Provider>
   );
 }
 

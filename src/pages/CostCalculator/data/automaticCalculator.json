@@ -1,0 +1,13 @@
+{
+  "title": "   Automatic calculation",
+  "origin": {
+    "title": "Origin coordinates",
+    "lat": "Latitud",
+    "lng": "Long"
+  },
+  "destination": {
+    "title": " Destination coordinates",
+    "lat": "Latitud",
+    "lng": "Long"
+  }
+}

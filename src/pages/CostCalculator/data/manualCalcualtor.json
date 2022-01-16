@@ -1,0 +1,13 @@
+{
+  "title": " Manual calculation",
+  "choose_feed": {
+    "title": "Choose a feed",
+    "option1": "  → 0.50€/Km",
+    "option2": "→ 0.25€/Km"
+  },
+  "placeholderInputdistance": "Introduce the distance",
+  "placeholderInputkm": "Introduce the €/km",
+  "calculate": "Calculate",
+  "distance": "distance",
+  "price": "Price"
+}
