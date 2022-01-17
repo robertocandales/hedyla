@@ -25,7 +25,7 @@ To Start Server:
 
 To Visit App:
 
-`localhost:3000/ideas`  
+`localhost:3000`  
 
 ## Reflection
 This is only an experimental project. 
