@@ -3,12 +3,12 @@ export interface RouteValues {
   valuePerKm: number;
 }
 
-interface IOrigin {
+export interface IOrigin {
   lat: string | number;
   lng: string | number;
 }
 
-interface IDestination {
+export interface IDestination {
   lat: string | number;
   lng: string | number;
 }

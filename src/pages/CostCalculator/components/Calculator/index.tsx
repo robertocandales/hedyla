@@ -4,7 +4,7 @@ import { ICoordinates } from '../../../../config/DTOs/routeTypes';
 import { Theme } from '../../../../config/theme';
 import { routeAction } from '../../../../redux/actions/routeActions';
 import { useAppSelector } from '../../../../redux/store/hooks';
-import AutocompleteInput from '../../../../shared/AutocompleteInput';
+//import AutocompleteInput from '../../../../shared/AutocompleteInput';
 import CustomButton from '../../../../shared/CustomButton';
 import Divider from '../../../../shared/Divider';
 import { FlexLayout, Text } from '../../../../shared/globalStyles';
@@ -27,7 +27,14 @@ const Calculator = (_props: Props) => {
   const CustomInput4 = useOnchange();
   const CustomInput5 = useOnchange();
   const CustomInput6 = useOnchange();
-  const { route = [], isloading, error, feed } = useAppSelector((store) => store.routeCalculator);
+  const {
+    route = [],
+    isloading,
+    error,
+    feed,
+    originCoordenates,
+    destinationCoordenates,
+  } = useAppSelector((store) => store.routeCalculator);
   const [manualCalcValue, setManualCalcValue] = useState<number>(0);
 
   const manualCalculation = () => {
@@ -36,8 +43,11 @@ const Calculator = (_props: Props) => {
   };
   const automaticCalculation = () => {
     const coordinates: ICoordinates = {
-      origin: { lat: CustomInput3.value, lng: CustomInput4.value },
-      destination: { lat: CustomInput5.value, lng: CustomInput6.value },
+      origin: { lat: originCoordenates.lat, lng: originCoordenates.lng },
+      destination: {
+        lat: destinationCoordenates.lat,
+        lng: destinationCoordenates.lng,
+      },
     };
 
     dispatch(routeAction(coordinates));
@@ -60,16 +70,8 @@ const Calculator = (_props: Props) => {
         CustomInput5={CustomInput5}
         CustomInput6={CustomInput6}
       />
-      <AutocompleteInput
-        value={CustomInput3.value}
-        onChange={CustomInput3.onChange}
-        placeholder='Latitud'
-      />
-      <CustomButton
-        margin='10px 0 10px 0'
-        disabled={isloading}
-        //color={Theme.colors.softText}
-        onClick={automaticCalculation}>
+
+      <CustomButton margin='10px 0 10px 0' disabled={isloading} onClick={automaticCalculation}>
         Calculate
       </CustomButton>
       {route.length > 0 && (
@@ -78,7 +80,7 @@ const Calculator = (_props: Props) => {
             {(route || []).map((waypoint, index) => (
               <FlexLayout key={waypoint.hint} flexDirection='column'>
                 <Text margin='10px 0 0 0' fontWeight='600' fontsize='16px'>
-                  Distance #{index + 1}: {waypoint.distance}
+                  Distance #{index + 1}: {waypoint.distance}  m
                 </Text>
                 <Text margin='10px 0 0 0' fontWeight='600' fontsize='16px'>
                   Name : {waypoint.name ? waypoint.name : 'N/A'}

@@ -1,4 +1,4 @@
-import { Waypoints } from '../../config/DTOs/routeTypes';
+import { IDestination, IOrigin, Waypoints } from '../../config/DTOs/routeTypes';
 import {
   CalculateRouteFailDispatchTypes,
   ROUTE_CALCULATION_LOADING,
@@ -6,6 +6,10 @@ import {
   ROUTE_CALCULATION_FAIL,
   CHOOSE_FEED,
   ChoseFeed,
+  ORIGIN_COORDINATES,
+  DESTINATION_COORDINATES,
+  DestinationCoordenates,
+  OriginCoordenates,
 } from '../types';
 
 interface IinitialState {
@@ -13,6 +17,8 @@ interface IinitialState {
   isloading: boolean;
   error: boolean;
   feed: number;
+  originCoordenates: IOrigin;
+  destinationCoordenates: IDestination;
 }
 
 const initialState: IinitialState = {
@@ -20,10 +26,12 @@ const initialState: IinitialState = {
   isloading: false,
   error: false,
   feed: 0.25,
+  originCoordenates: { lat: 40.4165, lng: -3.71256 },
+  destinationCoordenates: { lat: 40.4465, lng: -3.72256 },
 };
 const routeCalculatorReducer = (
   state: IinitialState = initialState,
-  action: CalculateRouteFailDispatchTypes | ChoseFeed,
+  action: CalculateRouteFailDispatchTypes | ChoseFeed | DestinationCoordenates | OriginCoordenates,
 ): IinitialState => {
   switch (action.type) {
     case ROUTE_CALCULATION_LOADING:
@@ -34,6 +42,10 @@ const routeCalculatorReducer = (
       return { ...state, isloading: false, error: true };
     case CHOOSE_FEED:
       return { ...state, feed: action.payload };
+    case ORIGIN_COORDINATES:
+      return { ...state, originCoordenates: action.payload };
+    case DESTINATION_COORDINATES:
+      return { ...state, destinationCoordenates: action.payload };
     default:
       return state;
   }
