@@ -13,11 +13,11 @@ Clone down this repository. You will need `node` and `npm` installed globally on
 
 You must create a .env file in the root folder and add the code below:
 
-```# API SERVICES`
+````# API SERVICES`
 
 `REACT_APP_BASE_API=http://router.project-osrm.org/route/v1`
 
-`REACT_APP_GOOGLE_MAPS_API_KEY='YOUR_GOOGLE_MAPS_API_KEY'```
+`REACT_APP_GOOGLE_MAPS_API_KEY='YOUR_GOOGLE_MAPS_API_KEY'````
 
 Installation:
 
