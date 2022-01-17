@@ -15,7 +15,7 @@ You must create a .env file in the root folder and add the code below:
 
 `# API SERVICES
 REACT_APP_BASE_API=http://router.project-osrm.org/route/v1
-REACT_APP_GOOGLE_MAPS_API_KEY=AIzaSyB3Q2Y2lBm75SJIK6b0wCu216fC6s3KHrE
+REACT_APP_GOOGLE_MAPS_API_KEY='YOUR_GOOGLE_MAP_API_KEY'
 `
 
 Installation:
